@@ -1,0 +1,119 @@
+// -*- c -*-
+
+// This is a line comment.
+
+/*
+ * This is a block comment.
+ */
+
+int g1;
+int g2[4];
+
+int assert(int expected, int actual, char *code) {
+  if (expected == actual) {
+    printf("%s result is => %d\n", code, actual);
+  } else {
+    printf("%s result is  => %d expected but got %d\n", code, expected, actual);
+    exit(1);
+  }
+}
+
+int ret3() {
+  return 3;
+  return 5;
+}
+
+int add2(int x, int y) {
+  return x + y;
+}
+
+int sub2(int x, int y) {
+  return x - y;
+}
+
+int add6(int a, int b, int c, int d, int e, int f) {
+  return a + b + c + d + e + f;
+}
+
+int addx(int *x, int y) {
+  return *x + y;
+}
+
+int sub_char(char a, char b, char c) {
+  return a - b - c;
+}
+
+int fib(int x) {
+  if (x<=1)
+    return 1;
+  return fib(x-1) + fib(x-2);
+}
+
+
+
+int main()
+{
+    printf("basic test:\n");
+    int a=3; int z=5;
+    printf("a+z=%d\n",a+z);
+    printf("(12 + 34 - 5)=%d\n",12 + 34 - 5);
+    printf("(3+5)/2=%d\n",(3+5)/2);
+    printf("\n");
+
+    printf("if-else test:\n");
+    if(a>3)
+      printf("a>3\n");
+    else
+      printf("a<=3\n");
+    printf("\n");
+
+    printf("while test:\n");
+    while(z<=10){
+      z=z+1;
+      printf("%d ",z);
+    }
+    printf("\n");
+    printf("\n");
+
+    printf("for test:\n");
+    for(z=11;z<=15;z=z+1){
+      printf("%d ",z);
+    }
+    printf("\n");
+    printf("\n");
+
+    printf("point and address test:\n");
+    int *aa=&a;
+    printf("*aa=%d\n",*aa);
+    printf("&a=%d\n",&a);
+    printf("\n");
+
+    printf("sizeof test:\n");
+    printf("sizeof(abcd)=%d\n",sizeof("abcd"));
+    printf("\n");
+ 
+ 
+    printf("recursive function test:\n");
+    printf("fib(5)=%d\n",fib(5));
+    printf("\n");
+
+    printf("array test:\n");
+    int x[5]; int *y=x+2;
+    x[1]=2;
+    printf("y-x=%d\n",y-x);
+    printf("x[1]=%d\n",x[1]);
+    printf("\n");
+
+    printf("string test:\n");
+    printf("abc[0]=%d\n","abc"[0]);
+    printf("\n");
+
+    printf("struct test:\n");
+    struct {int a; char b;}x;
+    x.a=1;
+    x.b=97;
+    printf("x.a=%d,x.b=%d\n",x.a,x.b);
+    printf("\n");
+
+    return 0;  // Add this line
+}

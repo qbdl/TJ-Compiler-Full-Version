@@ -1,5 +1,5 @@
-*.c
+code_file.c
 uploads
-*.exe
+output.exe
 .idea
 
