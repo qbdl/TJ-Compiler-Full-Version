@@ -6,9 +6,7 @@
         <div class="bg-area">
           <img src="~@/assets/img/bk.png" alt="" class="img-cur c-img-left" />
           <h3>作品简介</h3>
-          <p>
-            asd
-          </p>
+          <p>asd</p>
           <br />
           <a href="https://github.com/qbdl/TJ-Compiler-Full-Version" target="_blank" class="btn-a">
             <i class="fa fa-github"></i> Github链接
@@ -20,11 +18,13 @@
         <div class="bg-area">
           <h3>具体作品</h3>
           <p>TJ Compiler以及操作界面</p>
+          <div class="button-area">
+            <button class="btn-action" @click="uploadFile">上传文件</button>
+            <button class="btn-action" @click="compileCode">编译代码</button>
+            <input type="file" @change="fileChanged" style="display:none;" ref="fileInput">
+          </div>
           <textarea v-model="code" placeholder="输入你的代码"></textarea>
           <textarea readonly v-model="output" placeholder="编译结果"></textarea>
-          <button @click="compileCode">编译代码</button>
-          <button @click="uploadFile">上传文件</button>
-          <input type="file" @change="fileChanged" style="display:none;" ref="fileInput">
           <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default {
         code: this.code
       })
         .then(response => {
-          this.output = response.data.output;
+          this.output = response.data.output || response.data.error;
           this.errorMessage = '';
         })
         .catch(error => {
@@ -62,21 +62,14 @@ export default {
     },
     fileChanged(event) {
       this.file = event.target.files[0];
-      const formData = new FormData();
-      formData.append('file', this.file);
-      axios.post('http://localhost:5000/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-        .then(response => {
-          this.output = response.data.output;
-          this.errorMessage = response.data.error;
-        })
-        .catch(error => {
-          this.errorMessage = '上传错误';
-          console.log(error);
-        });
+      const reader = new FileReader();
+      reader.onload = e => {
+        this.code = e.target.result;
+      };
+      reader.onerror = e => {
+        this.errorMessage = '文件读取错误';
+      };
+      reader.readAsText(this.file);
     }
   }
 };
@@ -172,5 +165,26 @@ textarea {
 button {
   display: block;
   margin: 10px auto;
+}
+
+.button-area {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.btn-action {
+  background-color: #d3d3d3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-action:hover {
+  background-color: #bbb;
 }
 </style>
