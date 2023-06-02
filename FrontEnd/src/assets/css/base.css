@@ -1,0 +1,5 @@
+@import url('./normalize.css');
+html{
+    /* width: 100vw; */
+    overflow-x: hidden;
+}
