@@ -21,7 +21,7 @@ cd FrontEnd
 npm install
 ```
 
-<img src="/home/li/.config/Typora/typora-user-images/image-20230603170706262.png" alt="image-20230603170706262" style="zoom:80%;" />
+<img src="assets/image-20230603170706262.png" alt="image-20230603170706262" style="zoom:80%;" />
 
 #### 3、运行前端
 
@@ -36,7 +36,7 @@ cd BackEnd
 python main.py
 ```
 
-![image-20230603170812390](/home/li/.config/Typora/typora-user-images/image-20230603170812390.png)
+![image-20230603170812390](assets/image-20230603170812390.png)
 
 #### 补充：Ubuntu系统安装npm
 
