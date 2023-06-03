@@ -4,9 +4,11 @@
       <div class="left-area">
          <!-- 简介 -->
         <div class="bg-area">
-          <img src="~@/assets/img/bk.png" alt="" class="img-cur c-img-left" />
+          <!-- <img src="~@/assets/img/bk.png" alt="" class="img-cur" /> -->
           <h3>作品简介</h3>
-          <p>asd</p>
+          <p>同济大学2023编译原理课程项目(完整前后端)<br />
+            Author : lkj
+          </p>
           <br />
           <a href="https://github.com/qbdl/TJ-Compiler-Full-Version" target="_blank" class="btn-a">
             <i class="fa fa-github"></i> Github链接
@@ -16,16 +18,17 @@
 
       <div class="right-area">
         <div class="bg-area">
-          <h3>具体作品</h3>
-          <p>TJ Compiler以及操作界面</p>
+          <h2>TJ Compiler</h2>
           <div class="button-area">
             <button class="btn-action" @click="uploadFile">上传文件</button>
             <button class="btn-action" @click="compileCode">编译代码</button>
+            <button class="btn-action" @click="targetCode">目标代码查看</button>
             <input type="file" @change="fileChanged" style="display:none;" ref="fileInput">
           </div>
           <textarea v-model="code" placeholder="输入你的代码"></textarea>
           <textarea readonly v-model="output" placeholder="编译结果"></textarea>
           <!-- <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p> -->
+          <div class="spacer"></div>
         </div>
       </div>
     </div>
@@ -68,6 +71,22 @@ export default {
           console.log(error);
         });
     },
+    targetCode() {
+      axios.get('http://localhost:5000/getTargetCode') // send request to the new backend endpoint
+        .then(response => {
+          if (response.data.error) {
+            this.output = response.data.error;
+            this.errorMessage = response.data.error;
+          } else if (response.data.output) {
+            this.output = response.data.output;
+          }
+        })
+        .catch(error => {
+          this.output = '请求错误';
+          this.errorMessage = '请求错误';
+          console.log(error);
+        });
+    },
     uploadFile() {
       this.$refs.fileInput.click();
     },
@@ -101,7 +120,10 @@ export default {
   margin-top: 120px;
 }
 
-.left-area,
+.left-area{
+  display: inline-block;
+  position: relative;
+}
 .right-area {
   display: inline-block;
   text-align: center;
@@ -133,7 +155,7 @@ export default {
 }
 
 .bg-area {
-  background-color: rgb(253, 253, 253);
+  background-color: rgb(253, 253, 253,0.6);
   margin: 0px 20px;
   box-shadow: 0px 56px 36px -60px #121d12;
 }
@@ -143,13 +165,13 @@ export default {
   background-color: #d3d3d3;
   padding: 10px 20px;
   display: inline-block;
-  border-radius: 3px;
+  border-radius: 40px;
   color: white;
   margin: 10px auto 30px;
 }
 
 .btn-a:hover {
-  background-color: rgb(0, 181, 229);
+  background-color: #bef5ec;
 }
 
 .fa {
@@ -175,18 +197,18 @@ textarea {
 
 button {
   display: block;
-  margin: 10px auto;
 }
 
 .button-area {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .btn-action {
-  background-color: #d3d3d3;
-  color: #fff;
+  background-color: #bbb;
+    color: #fff;
   border: none;
   padding: 10px 20px;
   margin-left: 10px;
@@ -196,6 +218,10 @@ button {
 }
 
 .btn-action:hover {
-  background-color: #bbb;
+  background-color: #bef5ec;
+}
+
+.spacer {
+  height: 30px; /* 根据需要添加更多或更少的空白 */
 }
 </style>

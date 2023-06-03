@@ -9,7 +9,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r'/*': {'origins': '*'}}, supports_credentials=True)  # 解决跨域问题
 
-
+#编译
 @app.route('/compile', methods=['POST'])
 def compile_code():
     #make clean
@@ -51,6 +51,32 @@ def compile_code():
             "output": final_output,
             "error": final_err_output,
         }), 200
+
+#目标代码查看
+@app.route('/getTargetCode', methods=['GET'])
+def get_target_code():
+    target_code_file = './TJ-Compiler/targetCode.s'
+    
+    # Check if file exists
+    if not os.path.exists(target_code_file):
+        print("file not exists!\n")
+        return jsonify({"error": "Target code file does not exist"}), 400
+
+    # Check if file is empty
+    if os.path.getsize(target_code_file) == 0:
+        print("file is empty!\n")
+        return jsonify({"error": "Target code file is empty"}), 400
+
+    try:
+        with open(target_code_file, 'r') as file:
+            content = file.read()
+        return jsonify({
+            "output": content,
+            "error": ''
+        }), 200
+    except Exception as e:
+        print("reading error!\n")
+        return jsonify({"error": "An error occurred while reading the target code:\n{}".format(str(e))}), 400
 
 
 # 六一快乐！

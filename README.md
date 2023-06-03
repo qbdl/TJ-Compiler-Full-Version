@@ -1,7 +1,9 @@
 # TJ-Compiler-Full-Version
 同济大学2023编译原理课程项目（完整前后端）
 
+运行操作系统：Linux（编译器部分需要Linux的一些库）
 
+该项目对应纯编译器部分：https://github.com/qbdl/TJ-Compiler
 
 ### 一、使用说明
 
