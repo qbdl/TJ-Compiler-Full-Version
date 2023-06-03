@@ -19,7 +19,12 @@ another_test: chibicc
 	./tmp_my_test
 	@echo "my_test finished with exit code $$?"
 
-clean:
-	rm -f chibicc *.o *~ tmp*
+input_test:chibicc
+	@./chibicc code_file > targetCode.s
+	@gcc -static -o targetCode targetCode.s
+	@./targetCode
 
-.PHONY: test clean
+clean:
+	rm -f chibicc *.o *~ tmp* code_file code_file.s targetCode.s
+
+.PHONY: test clean another_test input_test
