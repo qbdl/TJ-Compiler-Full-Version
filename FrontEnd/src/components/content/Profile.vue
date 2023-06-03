@@ -25,7 +25,7 @@
           </div>
           <textarea v-model="code" placeholder="输入你的代码"></textarea>
           <textarea readonly v-model="output" placeholder="编译结果"></textarea>
-          <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+          <!-- <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p> -->
         </div>
       </div>
     </div>
@@ -49,16 +49,22 @@ export default {
         code: this.code
       })
         .then(response => {
-          if (response.data.output) {
+          if (response.data.error) {
+            this.output = response.data.error;
+            this.errorMessage = response.data.error;
+          } else if (response.data.output) {
             this.output = response.data.output;
             this.errorMessage = '';
-          } else if (response.data.error) {
-            this.output = response.data.error;
-            this.errorMessage = '编译错误';
           }
         })
         .catch(error => {
-          this.errorMessage = '请求错误';
+          if (error.response && error.response.data.error) {
+            this.output = error.response.data.error;
+            this.errorMessage = error.response.data.error;
+          } else {
+            this.output = '请求错误';
+            this.errorMessage = '请求错误';
+          }
           console.log(error);
         });
     },
