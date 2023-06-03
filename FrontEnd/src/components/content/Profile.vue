@@ -49,11 +49,16 @@ export default {
         code: this.code
       })
         .then(response => {
-          this.output = response.data.output || response.data.error;
-          this.errorMessage = '';
+          if (response.data.output) {
+            this.output = response.data.output;
+            this.errorMessage = '';
+          } else if (response.data.error) {
+            this.output = response.data.error;
+            this.errorMessage = '编译错误';
+          }
         })
         .catch(error => {
-          this.errorMessage = '编译错误';
+          this.errorMessage = '请求错误';
           console.log(error);
         });
     },
