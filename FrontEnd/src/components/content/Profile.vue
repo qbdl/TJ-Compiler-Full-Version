@@ -48,6 +48,9 @@ export default {
   },
   methods: {
     compileCode() {
+      // Clear error message before compiling
+      this.errorMessage = '';
+
       axios.post('http://localhost:5000/compile', {
         code: this.code
       })
@@ -72,6 +75,9 @@ export default {
         });
     },
     targetCode() {
+      // Clear error message before retrieving target code
+      this.errorMessage = '';
+      
       axios.get('http://localhost:5000/getTargetCode') // send request to the new backend endpoint
         .then(response => {
           if (response.data.error) {

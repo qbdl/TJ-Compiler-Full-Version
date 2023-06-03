@@ -21,6 +21,8 @@ cd FrontEnd
 npm install
 ```
 
+<img src="/home/li/.config/Typora/typora-user-images/image-20230603170706262.png" alt="image-20230603170706262" style="zoom:80%;" />
+
 #### 3、运行前端
 
 ```powershell
@@ -34,9 +36,9 @@ cd BackEnd
 python main.py
 ```
 
+![image-20230603170812390](/home/li/.config/Typora/typora-user-images/image-20230603170812390.png)
 
-
-#### 补充：Unbuntu系统安装npm
+#### 补充：Ubuntu系统安装npm
 
 使用 nvm (Node Version Manager) 来管理你的 Node.js 版本
 
@@ -73,3 +75,11 @@ nvm alias default 14.17.1
 
 
 ### 二、效果展示
+
+![begin2](assets/begin2.png)
+
+![image-20230603195248954](assets/image-20230603195248954.png)
+
+![image-20230603195337412](assets/image-20230603195337412.png)
+
+![image-20230603195422569](assets/image-20230603195422569.png)
