@@ -1,9 +1,13 @@
-# TJ-Compiler-Full-Version
+# TJ-Compiler-Full-Version  ![redis](https://img.shields.io/badge/qbdl-TJ--Compiler--Full--Version-blueviolet?logo=Github)
 同济大学2023编译原理课程项目（完整前后端）
 
-运行操作系统：Linux（编译器部分需要Linux的一些库）
+运行环境：Linux（编译器部分需要Linux的一些库）
 
-该项目对应纯编译器部分：https://github.com/qbdl/TJ-Compiler
+前端：Vue   后端：flask + TJ-Compiler
+
+该项目中纯编译器部分：[TJ-Compiler](https://github.com/qbdl/TJ-Compiler)
+
+
 
 ### 一、使用说明
 
