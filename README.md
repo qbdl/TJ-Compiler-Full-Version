@@ -5,6 +5,8 @@
 
 前端：Vue   后端：flask + TJ-Compiler
 
+node version : v16.16.0
+
 该项目中纯编译器部分：[TJ-Compiler](https://github.com/qbdl/TJ-Compiler)
 
 
